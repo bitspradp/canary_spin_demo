@@ -28,7 +28,8 @@ spec:
     spec:
       containers:
       - name: demoapp-canary
-        image: bitspradp/cd_demo_spin:${{CF_SHORT_REVISION}}
+        image: bitspradp/canary_demo
+        :${{CF_SHORT_REVISION}}
         ports:
         - containerPort: 5000
         readinessProbe:
