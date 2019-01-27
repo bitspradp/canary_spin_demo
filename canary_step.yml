@@ -36,18 +36,6 @@ steps:
     description: Pushing Docker Image to Dockerhub...
     type: push
     candidate: ${{buildAppImage}}
-    image_name: bitspradp/cd_demo_spin
+    image_name: bitspradp/canary_demo
     tag: ${{CF_SHORT_REVISION}}
     registry: dockerhub
-  canaryDeploy:
-    title: "Deploying new version ${{CF_SHORT_REVISION}}"
-    image: codefresh/k8s-canary:master
-    environment:
-      - WORKING_VOLUME=.
-      - SERVICE_NAME=demoapp
-      - DEPLOYMENT_NAME=demoapp
-      - TRAFFIC_INCREMENT=20
-      - NEW_VERSION=${{CF_SHORT_REVISION}}
-      - SLEEP_SECONDS=10
-      - NAMESPACE=default
-      - KUBE_CONTEXT=stage-cluster-canary
